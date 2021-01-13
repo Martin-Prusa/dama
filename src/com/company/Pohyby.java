@@ -52,31 +52,41 @@ public class Pohyby {
             System.out.print("y:");
             int y1 = Utils.dalsiCislo();
             y1 = 8 - y1;
-            if((pole[y1][x1] == 0 && Pole.pole[y1][x1] == 1) && (y+1==y1 || y-1==y1)){
+            if((pole[y1][x1] == 0 && Pole.pole[y1][x1] == 1) && (y+1==y1 || y-1==y1) && (x+1==x1 || x-1==x1)){
+                //normální pohyb
                 pole[y][x] =0;
                 if(c == 'b') pole[y1][x1] = 1;
                 else pole[y1][x1] = 2;
                 a = false;
-            } else if((pole[y1][x1] == 0 && Pole.pole[y1][x1] == 1) && (y+2==y1 || y-2==y1)) {
+            } else if((pole[y1][x1] == 0 && Pole.pole[y1][x1] == 1) && (y+2==y1 || y-2==y1) && (x+2==x1 || x-2==x1)) {
+                //preskoceni bili cerneho
                 if(c == 'b') {
-                    int cisloX = x1 - x + x;
-                    int cisloY = y1 - y + y;
-                    if(Utils.jeKladne(cisloX)) cisloX--;
-                    else cisloX++;
-                    if(Utils.jeKladne(cisloY)) cisloY--;
-                    else cisloY++;
-                    System.out.println((int)(y+cisloY)+" "+(int)(x+cisloX));
+                    int[] xy = Utils.xyB(x, y, x1, y1);
+                    int cisloX = xy[0];
+                    int cisloY = xy[1];
                     if(pole[cisloY][cisloX] == 2) {
                         pole[y][x] =0;
                         pole[y1][x1] = 1;
-                        pole[8-(y+cisloY)][x+cisloX-1] = 0;
+                        pole[cisloY][cisloX] = 0;
+                        a = false;
+                    } else{
+                        System.out.println("Nesprávný výběr. Zkus to znovu.");
+                    }
+                } else {
+                    int[] xy = Utils.xyB(x, y,x1, y1);
+                    int cisloX = xy[0];
+                    int cisloY = xy[1];
+                    if(pole[cisloY][cisloX] == 1) {
+                        pole[y][x] =0;
+                        pole[y1][x1] = 2;
+                        pole[cisloY][cisloX] = 0;
                         a = false;
                     } else{
                         System.out.println("Nesprávný výběr. Zkus to znovu.");
                     }
                 }
             } else {
-                System.out.println("Nesprávný výběr. Zkus to znovu.");
+                System.out.println("Nesprávný výběr. Zkus to znovu.2");
             }
         }
         return pole;
