@@ -16,8 +16,10 @@ public class Pohyby {
                 pole[y][x] = 3;
                 Vykresleni.vykresliPole(pole);
                 pole[y][x] = 1;
-                a = false;
-                pohybOvereni(x, y, pole, 'b');
+                if(Utils.overreniMoznostiTahu(x, y, pole)) {
+                    a = false;
+                    pohybOvereni(x, y, pole, 'b');
+                } else System.out.println("Touto figurkou by nešlo táhnout. Vyber prosím jinou figurku.");
             } else System.out.println("Neplatný výběr. Hraje bílý hráč.  Zkus to znovu.");
         }
         return pole;
@@ -36,8 +38,10 @@ public class Pohyby {
                 pole[y][x] = 4;
                 Vykresleni.vykresliPole(pole);
                 pole[y][x] = 2;
-                a=false;
-                pole = pohybOvereni(x, y, pole, 'c');
+                if(Utils.overreniMoznostiTahu(x, y, pole)){
+                    a = false;
+                    pole = pohybOvereni(x, y, pole, 'c');
+                }else System.out.println("Touto figurkou by nešlo táhnout. Vyber prosím jinou figurku.");
             } else System.out.println("Neplatný výběr. Hraje černý hráč. Zkus to znovu.");
         }
         return pole;

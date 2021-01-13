@@ -34,9 +34,32 @@ public class Utils {
     }
 
     public static boolean overreniMoznostiTahu(int x, int y, int[][] pole) {
-
+        try {
+            if(pole[y+1][x+1] == 0) return true;
+            else if(pole[y+1][x-1] == 0) return true;
+            else if(pole[y-1][x+1] == 0) return true;
+            else if(pole[y-1][x-1] == 0) return true;
+            return false;
+        } catch (Exception e) {
+            try {
+                if(pole[y+1][x-1] == 0) return true;
+                else if(pole[y-1][x+1] == 0) return true;
+                else if(pole[y-1][x-1] == 0) return true;
+                return false;
+            } catch (Exception f) {
+                try {
+                    if(pole[y-1][x+1] == 0) return true;
+                    else if(pole[y-1][x-1] == 0) return true;
+                    return false;
+                } catch (Exception g) {
+                    try {
+                        if(pole[y-1][x-1] == 0) return true;
+                        return false;
+                    } catch (Exception h) {
+                        return false;
+                    }
+                }
+            }
+        }
     }
-
-
-
 }
