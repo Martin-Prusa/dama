@@ -70,4 +70,12 @@ public class Utils {
         }
         return false;
     }
+
+    public static boolean overeniMoznostiTahuDamyB(int x, int y, int[][]pole) {
+        return true;
+    }
+
+    public static boolean overeniMoznostiTahuDamyC(int x, int y, int[][] pole) {
+        return true;
+    }
 }

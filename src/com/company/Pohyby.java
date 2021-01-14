@@ -20,6 +20,14 @@ public class Pohyby {
                     a = false;
                     pole = pohybOvereniNormalniB(x, y, pole);
                 } else System.out.println("Touto figurkou by nešlo táhnout. Vyber prosím jinou figurku.");
+            } else if(pole[y][x] == 5) {
+                pole[y][x] = 7;
+                Vykresleni.vykresliPole(pole);
+                pole[y][x] = 5;
+                if(Utils.overeniMoznostiTahuDamyB(x, y, pole)) {
+                    a = false;
+                    pole = pohybOvereniDamyB(x, y, pole);
+                } else System.out.println("Touto figurkou by nešlo táhnout. Vyber prosím jinou figurku.");
             } else System.out.println("Neplatný výběr. Hraje bílý hráč.  Zkus to znovu.");
         }
         return pole;
@@ -42,6 +50,14 @@ public class Pohyby {
                     a = false;
                     pole = pohybOvereniNormalniC(x, y, pole, 'c');
                 }else System.out.println("Touto figurkou by nešlo táhnout. Vyber prosím jinou figurku.");
+            } else if(pole[y][x] == 6) {
+                pole[y][x] = 8;
+                Vykresleni.vykresliPole(pole);
+                pole[y][x] = 6;
+                if(Utils.overeniMoznostiTahuDamyC(x, y, pole)){
+                    a = false;
+                    pole = pohybOvereniDamyC(x, y, pole);
+                } else System.out.println("Touto figurkou by nešlo táhnout. Vyber prosím jinou figurku.");
             } else System.out.println("Neplatný výběr. Hraje černý hráč. Zkus to znovu.");
         }
         return pole;
@@ -58,7 +74,8 @@ public class Pohyby {
             y1 = 8 - y1;
             if((pole[y1][x1] == 0 && (Pole.pole[y1][x1] == 1 || Pole.pole[y1][x1] == 2|| Pole.pole[y1][x1] == 3)) && (y-1==y1) && (x+1==x1 || x-1==x1)){
                 pole[y][x] =0;
-                pole[y1][x1] = 1;
+                if(Pole.pole[y1][x1] == 3) pole[y1][x1] = 5;
+                else pole[y1][x1] = 1;
                 a = false;
             } else if((pole[y1][x1] == 0 && (Pole.pole[y1][x1] == 1 || Pole.pole[y1][x1] == 2|| Pole.pole[y1][x1] == 3)) && (y-2==y1) && (x+2==x1 || x-2==x1)) {
                 int[] xy = Utils.xyB(x, y, x1, y1);
@@ -91,7 +108,8 @@ public class Pohyby {
             y1 = 8 - y1;
             if((pole[y1][x1] == 0 && (Pole.pole[y1][x1] == 1 || Pole.pole[y1][x1] == 2|| Pole.pole[y1][x1] == 3)) && (y+1==y1) && (x+1==x1 || x-1==x1)){
                 pole[y][x] =0;
-                pole[y1][x1] = 2;
+                if(Pole.pole[y1][x1] == 2) pole[y1][x1] = 6;
+                else pole[y1][x1] = 2;
                 a = false;
             } else if((pole[y1][x1] == 0 && (Pole.pole[y1][x1] == 1 || Pole.pole[y1][x1] == 2|| Pole.pole[y1][x1] == 3)) && (y+2==y1) && (x+2==x1 || x-2==x1)) {
                     int[] xy = Utils.xyB(x, y,x1, y1);
@@ -111,6 +129,14 @@ public class Pohyby {
         }
         return pole;
 
+    }
+
+    private static int[][] pohybOvereniDamyB(int x, int y, int[][] pole) {
+        return pole;
+    }
+
+    private static int[][] pohybOvereniDamyC(int x, int y, int[][] pole) {
+        return pole;
     }
 
 
