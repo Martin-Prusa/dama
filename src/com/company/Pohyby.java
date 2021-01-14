@@ -16,9 +16,9 @@ public class Pohyby {
                 pole[y][x] = 3;
                 Vykresleni.vykresliPole(pole);
                 pole[y][x] = 1;
-                if(Utils.overreniMoznostiTahu(x, y, pole)) {
+                if(Utils.overreniMoznostiTahuNormalnihoBileho(x, y, pole)) {
                     a = false;
-                    pohybOvereni(x, y, pole, 'b');
+                    pole = pohybOvereniNormalniB(x, y, pole);
                 } else System.out.println("Touto figurkou by nešlo táhnout. Vyber prosím jinou figurku.");
             } else System.out.println("Neplatný výběr. Hraje bílý hráč.  Zkus to znovu.");
         }
@@ -38,16 +38,16 @@ public class Pohyby {
                 pole[y][x] = 4;
                 Vykresleni.vykresliPole(pole);
                 pole[y][x] = 2;
-                if(Utils.overreniMoznostiTahu(x, y, pole)){
+                if(Utils.overreniMoznostiTahuNormalnihoCerneho(x, y, pole)){
                     a = false;
-                    pole = pohybOvereni(x, y, pole, 'c');
+                    pole = pohybOvereniNormalniC(x, y, pole, 'c');
                 }else System.out.println("Touto figurkou by nešlo táhnout. Vyber prosím jinou figurku.");
             } else System.out.println("Neplatný výběr. Hraje černý hráč. Zkus to znovu.");
         }
         return pole;
     }
 
-    public static int[][] pohybOvereni(int x, int y, int[][] pole, char c) {
+    public static int[][] pohybOvereniNormalniB(int x, int y, int[][] pole) {
         boolean a = true;
         while(a) {
             System.out.println("Zadej souřadnice, kam chceš figurku posunout: ");
@@ -56,27 +56,44 @@ public class Pohyby {
             System.out.print("y:");
             int y1 = Utils.dalsiCislo();
             y1 = 8 - y1;
-            if((pole[y1][x1] == 0 && Pole.pole[y1][x1] == 1) && (y+1==y1 || y-1==y1) && (x+1==x1 || x-1==x1)){
-                //normální pohyb
+            if((pole[y1][x1] == 0 && (Pole.pole[y1][x1] == 1 || Pole.pole[y1][x1] == 2|| Pole.pole[y1][x1] == 3)) && (y-1==y1) && (x+1==x1 || x-1==x1)){
                 pole[y][x] =0;
-                if(c == 'b') pole[y1][x1] = 1;
-                else pole[y1][x1] = 2;
+                pole[y1][x1] = 1;
                 a = false;
-            } else if((pole[y1][x1] == 0 && Pole.pole[y1][x1] == 1) && (y+2==y1 || y-2==y1) && (x+2==x1 || x-2==x1)) {
-                //preskoceni bili cerneho
-                if(c == 'b') {
-                    int[] xy = Utils.xyB(x, y, x1, y1);
-                    int cisloX = xy[0];
-                    int cisloY = xy[1];
-                    if(pole[cisloY][cisloX] == 2) {
-                        pole[y][x] =0;
-                        pole[y1][x1] = 1;
-                        pole[cisloY][cisloX] = 0;
-                        a = false;
-                    } else{
-                        System.out.println("Nesprávný výběr. Zkus to znovu.");
-                    }
-                } else {
+            } else if((pole[y1][x1] == 0 && (Pole.pole[y1][x1] == 1 || Pole.pole[y1][x1] == 2|| Pole.pole[y1][x1] == 3)) && (y-2==y1) && (x+2==x1 || x-2==x1)) {
+                int[] xy = Utils.xyB(x, y, x1, y1);
+                int cisloX = xy[0];
+                int cisloY = xy[1];
+                if(pole[cisloY][cisloX] == 2) {
+                    pole[y][x] =0;
+                    pole[y1][x1] = 1;
+                    pole[cisloY][cisloX] = 0;
+                    a = false;
+                } else{
+                    System.out.println("Nesprávný výběr. Zkus to znovu.");
+                }
+            } else {
+                System.out.println("Nesprávný výběr. Zkus to znovu.2");
+            }
+        }
+        return pole;
+
+    }
+
+    public static int[][] pohybOvereniNormalniC(int x, int y, int[][] pole, char c) {
+        boolean a = true;
+        while(a) {
+            System.out.println("Zadej souřadnice, kam chceš figurku posunout: ");
+            System.out.print("x:");
+            int x1 = Utils.dalsiCislo()-1;
+            System.out.print("y:");
+            int y1 = Utils.dalsiCislo();
+            y1 = 8 - y1;
+            if((pole[y1][x1] == 0 && (Pole.pole[y1][x1] == 1 || Pole.pole[y1][x1] == 2|| Pole.pole[y1][x1] == 3)) && (y+1==y1) && (x+1==x1 || x-1==x1)){
+                pole[y][x] =0;
+                pole[y1][x1] = 2;
+                a = false;
+            } else if((pole[y1][x1] == 0 && (Pole.pole[y1][x1] == 1 || Pole.pole[y1][x1] == 2|| Pole.pole[y1][x1] == 3)) && (y+2==y1) && (x+2==x1 || x-2==x1)) {
                     int[] xy = Utils.xyB(x, y,x1, y1);
                     int cisloX = xy[0];
                     int cisloY = xy[1];
@@ -88,7 +105,6 @@ public class Pohyby {
                     } else{
                         System.out.println("Nesprávný výběr. Zkus to znovu.");
                     }
-                }
             } else {
                 System.out.println("Nesprávný výběr. Zkus to znovu.2");
             }
@@ -96,5 +112,7 @@ public class Pohyby {
         return pole;
 
     }
+
+
 
 }
