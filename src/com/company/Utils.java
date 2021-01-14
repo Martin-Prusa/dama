@@ -31,27 +31,43 @@ public class Utils {
 
     public static boolean overreniMoznostiTahuNormalnihoBileho(int x, int y, int[][] pole) {
         try {
-            if(pole[y-1][x+1] == 0) return true;
-            else return pole[y - 1][x - 1] == 0;
-        } catch (Exception e) {
-            try {
-                return pole[y - 1][x - 1] == 0;
-            } catch (Exception f) {
-                return false;
+            if(pole[y-1][x+1] == 0 || pole[y-1][x+1] == 2) {
+                if(pole[y-1][x+1] == 0) return true;
+                else if(pole[y-1][x+1] == 2) return pole[y-2][y+2] == 0;
+            } else {
+                if(pole[y - 1][x - 1] == 0) return true;
+                else if(pole[y-1][x-1] == 2) return pole[y-2][x-2] == 0;
             }
+        } catch (Exception e) {
+            System.out.print("");
         }
+        try {
+            if(pole[y - 1][x - 1] == 0) return true;
+            else if(pole[y-1][x-1] == 2) return pole[y-2][x-2] == 0;
+        } catch (Exception f) {
+            return false;
+        }
+        return false;
     }
 
     public static boolean overreniMoznostiTahuNormalnihoCerneho(int x, int y, int[][] pole) {
         try {
-            if(pole[y+1][x+1] == 0) return true;
-            else return pole[y+1][x-1] == 0;
-        } catch (Exception e) {
-            try {
-                return pole[y+1][x-1] == 0;
-            } catch (Exception f) {
-                return false;
+            if(pole[y+1][x+1] == 0 || pole[y+1][x+1] == 1) {
+                if(pole[y+1][x+1] == 0) return true;
+                else if(pole[y+1][x+1] == 1) return pole[y+2][y+2] == 0;
+            } else {
+                if(pole[y + 1][x - 1] == 0) return true;
+                else if(pole[y+1][x-1] == 1) return pole[y+2][x-2] == 0;
             }
+        } catch (Exception e) {
+            System.out.print("");
         }
+        try {
+            if(pole[y + 1][x - 1] == 0) return true;
+            else if(pole[y+1][x-1] == 1) return pole[y+2][x-2] == 0;
+        } catch (Exception f) {
+            return false;
+        }
+        return false;
     }
 }
