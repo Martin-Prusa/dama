@@ -17,15 +17,14 @@ public class Vykresleni {
                     } else {
                         System.out.print("⬜️");
                     }
-                } else if(pole[i][j] == 1){
-                    System.out.print("♜ ");
-                } else if(pole[i][j] == 2){
-                    System.out.print("♖ ");
-                } else if (pole[i][j] == 3) {
-                    System.out.print(ANSI_RED+"♜ "+ANSI_RESET);
-                } else {
-                    System.out.print(ANSI_RED+"♖ "+ANSI_RESET);
-                }
+                }else if(pole[i][j] == 1)System.out.print("◉ ");
+                else if(pole[i][j] == 2) System.out.print("◎ ");
+                else if (pole[i][j] == 3) System.out.print(ANSI_RED+"◉ "+ANSI_RESET);
+                else if(pole[i][j] == 4) System.out.print(ANSI_RED+"◎ "+ANSI_RESET);
+                else if(pole[i][j] == 5) System.out.print("♜ ");
+                else if(pole[i][j] == 6) System.out.print("♖ ");
+                else if(pole[i][j] == 7) System.out.print(ANSI_RED+"♜ "+ANSI_RESET);
+                else if(pole[i][j] == 8) System.out.print(ANSI_RED+"♖ "+ANSI_RESET);
             }
 
             System.out.println();
