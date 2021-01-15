@@ -12,7 +12,7 @@ public class Vykresleni {
                 }
 
                 if(pole[i][j] == 0) {
-                    if(Pole.pole[i][j] == 1) {
+                    if(Pole.pole[i][j] == 1 ||Pole.pole[i][j] == 2 || Pole.pole[i][j] == 3) {
                         System.out.print("⬛️");
                     } else {
                         System.out.print("⬜️");

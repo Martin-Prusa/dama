@@ -132,13 +132,72 @@ public class Pohyby {
     }
 
     private static int[][] pohybOvereniDamyB(int x, int y, int[][] pole) {
+        boolean a = true;
+        while(a) {
+            System.out.println("Zadej souřadnice, kam chceš fugurku posunout: ");
+            System.out.print("x:");
+            int x1 = Utils.dalsiCislo()-1;
+            System.out.print("y:");
+            int y1 = Utils.dalsiCislo();
+            y1 = 8 - y1;
+            if(Math.abs(x-x1) == Math.abs(y-y1) && pole[y1][x1] == 0) {
+                boolean b = true;
+                int[][] tmpPole = pole;
+                for (int i = 1; i <= Math.abs(x-x1); i++) {
+                    tmpPole = pole;
+                    int ax = (i*((x1-x) / Math.abs(x1-x))) + x;
+                    int ay = (i*((y1-y) / Math.abs(y1-y))) + y;
+                    if(pole[ay][ax] == 0 ||pole[ay][ax] == 2 || pole[ay][ax] == 6) {
+                        tmpPole[ay][ax] = 0;
+                    } else b=false;
+                }
+                if(b) {
+                    pole[y][x] = 0;
+                    pole[y1][x1] = 5;
+                    a=false;
+                    pole = tmpPole;
+                    
+                }
+            } else {
+                System.out.println("Nesprávný výběr.");
+            }
+
+        }
         return pole;
     }
 
     private static int[][] pohybOvereniDamyC(int x, int y, int[][] pole) {
+        boolean a = true;
+        while(a) {
+            System.out.println("Zadej souřadnice, kam chceš fugurku posunout: ");
+            System.out.print("x:");
+            int x1 = Utils.dalsiCislo()-1;
+            System.out.print("y:");
+            int y1 = Utils.dalsiCislo();
+            y1 = 8 - y1;
+            if(Math.abs(x-x1) == Math.abs(y-y1) && pole[y1][x1] == 0) {
+                boolean b = true;
+                int[][] tmpPole = pole;
+                for (int i = 1; i <= Math.abs(x-x1); i++) {
+                    tmpPole = pole;
+                    int ax = (i*((x1-x) / Math.abs(x1-x))) + x;
+                    int ay = (i*((y1-y) / Math.abs(y1-y))) + y;
+                    if(pole[ay][ax] == 0 ||pole[ay][ax] == 1 || pole[ay][ax] == 5) {
+                        tmpPole[ay][ax] = 0;
+                    } else b=false;
+                }
+                if(b) {
+                    pole[y][x] = 0;
+                    pole[y1][x1] = 6;
+                    a=false;
+                    pole = tmpPole;
+
+                }
+            } else {
+                System.out.println("Nesprávný výběr.");
+            }
+
+        }
         return pole;
     }
-
-
-
-}
+    }
