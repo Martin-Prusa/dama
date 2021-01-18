@@ -27,9 +27,9 @@ public class Main {
         Vykresleni.vykresliPole(hraciPole);
         boolean a = true;
         while(a) {
-            hraciPole = Pohyby.pohybB(hraciPole);
+            hraciPole = Pohyby.pohyb(hraciPole, 'b');
             Vykresleni.vykresliPole(hraciPole);
-            hraciPole = Pohyby.pohybC(hraciPole);
+            hraciPole = Pohyby.pohyb(hraciPole, 'c');
             Vykresleni.vykresliPole(hraciPole);
         }
 
