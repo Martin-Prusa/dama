@@ -10,9 +10,9 @@ public class Pohyby {
             if(ch=='b') System.out.println("Zadej souřadnice bílé figurky, se kterou chceš pohnout: ");
             else System.out.println("Zadej souřadnice černé figurky, se kterou chceš pohnout: ");
             System.out.print("x:");
-            int x = Utils.dalsiCislo() - 1;
+            int x = Utils.dalsiCislo(0,8) - 1;
             System.out.print("y:");
-            int y = Utils.dalsiCislo();
+            int y = Utils.dalsiCislo(0,8);
             y = 8 - y;
             if (pole[y][x] == cisla[0]) {
                 pole[y][x] = cisla[1];
@@ -53,9 +53,9 @@ public class Pohyby {
         while(a) {
             System.out.println("Zadej souřadnice, kam chceš figurku posunout: ");
             System.out.print("x:");
-            int x1 = Utils.dalsiCislo()-1;
+            int x1 = Utils.dalsiCislo(0,8)-1;
             System.out.print("y:");
-            int y1 = Utils.dalsiCislo();
+            int y1 = Utils.dalsiCislo(0,8);
             y1 = 8 - y1;
             if((pole[y1][x1] == 0 && (Pole.pole[y1][x1] == 1 || Pole.pole[y1][x1] == 2|| Pole.pole[y1][x1] == 3)) && (souradnice==y1) && (x+1==x1 || x-1==x1)){
                 pole[y][x] =0;
@@ -88,9 +88,9 @@ public class Pohyby {
         while(a) {
             System.out.println("Zadej souřadnice, kam chceš fugurku posunout: ");
             System.out.print("x:");
-            int x1 = Utils.dalsiCislo()-1;
+            int x1 = Utils.dalsiCislo(0,8)-1;
             System.out.print("y:");
-            int y1 = Utils.dalsiCislo();
+            int y1 = Utils.dalsiCislo(0,8);
             y1 = 8 - y1;
             if(Math.abs(x-x1) == Math.abs(y-y1) && pole[y1][x1] == 0) {
                 boolean b = true;
@@ -99,7 +99,7 @@ public class Pohyby {
                     tmpPole = pole;
                     int ax = (i*((x1-x) / Math.abs(x1-x))) + x;
                     int ay = (i*((y1-y) / Math.abs(y1-y))) + y;
-                    if(pole[ay][ax] == 0 ||pole[ay][ax] == cisla2[0] || pole[ay][ax] == cisla[2]) {
+                    if(pole[ay][ax] == 0 ||pole[ay][ax] == cisla2[0] || pole[ay][ax] == cisla2[2]) {
                         tmpPole[ay][ax] = 0;
                     } else b=false;
                 }
