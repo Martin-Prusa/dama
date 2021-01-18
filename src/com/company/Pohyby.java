@@ -18,7 +18,7 @@ public class Pohyby {
                 pole[y][x] = cisla[1];
                 Vykresleni.vykresliPole(pole);
                 pole[y][x] = cisla[0];
-                if(Utils.overreniMoznostiTahuNormalniho(x, y, pole, ch)) {
+                if(Over.overreniMoznostiTahuNormalniho(x, y, pole, ch)) {
                     a = false;
                     pole = pohybOvereniNormalni(x, y, pole, ch);
                 } else System.out.println("Touto figurkou by nešlo táhnout. Vyber prosím jinou figurku.");
@@ -26,7 +26,7 @@ public class Pohyby {
                 pole[y][x] = cisla[3];
                 Vykresleni.vykresliPole(pole);
                 pole[y][x] = cisla[2];
-                if(Utils.overeniMoznostiTahuDamy(x, y, pole, ch)) {
+                if(Over.overeniMoznostiTahuDamy(x, y, pole, ch)) {
                     a = false;
                     pole = pohybOvereniDamy(x, y, pole, ch);
                 } else System.out.println("Touto figurkou by nešlo táhnout. Vyber prosím jinou figurku.");
@@ -75,7 +75,7 @@ public class Pohyby {
                     System.out.println("Nesprávný výběr. Zkus to znovu.");
                 }
             } else {
-                System.out.println("Nesprávný výběr. Zkus to znovu.2");
+                System.out.println("Nesprávný výběr. Zkus to znovu.");
             }
         }
         return pole;
@@ -94,22 +94,27 @@ public class Pohyby {
             y1 = 8 - y1;
             if(Math.abs(x-x1) == Math.abs(y-y1) && pole[y1][x1] == 0) {
                 boolean b = true;
-                int[][] tmpPole = pole;
-                for (int i = 1; i <= Math.abs(x-x1); i++) {
-                    tmpPole = pole;
+                for (int i = 1; i <= Math.abs(x-x1) && b; i++) {
                     int ax = (i*((x1-x) / Math.abs(x1-x))) + x;
                     int ay = (i*((y1-y) / Math.abs(y1-y))) + y;
-                    if(pole[ay][ax] == 0 ||pole[ay][ax] == cisla2[0] || pole[ay][ax] == cisla2[2]) {
-                        tmpPole[ay][ax] = 0;
-                    } else b=false;
+                    if(pole[ay][ax] == 0 ||pole[ay][ax] == cisla2[0] || pole[ay][ax] == cisla2[2]);
+                    else b=false;
+
                 }
                 if(b) {
                     pole[y][x] = 0;
                     pole[y1][x1] = cisla[2];
                     a=false;
-                    pole = tmpPole;
+                    //pole = tmpPole;
+                    for (int i = 1; i <= Math.abs(x-x1); i++) {
+                        int ax = (i*((x1-x) / Math.abs(x1-x))) + x;
+                        int ay = (i*((y1-y) / Math.abs(y1-y))) + y;
+                        if(pole[ay][ax] == 0 ||pole[ay][ax] == cisla2[0] || pole[ay][ax] == cisla2[2]) pole[ay][ax] = 0;
+                    }
 
-                }
+                } else System.out.println("Nesprávný výběr.");
+
+
             } else {
                 System.out.println("Nesprávný výběr.");
             }
