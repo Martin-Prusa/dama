@@ -39,16 +39,14 @@ public class Pohyby {
     }
 
     public static int[][] pohybOvereniNormalni(int x, int y, int[][] pole, char ch) {
-        int souradnice, souradnice2;
+        int souradnice;
         if(ch == 'b') {
             souradnice = y-1;
-            souradnice2 = y-2;
         } else {
             souradnice = y+1;
-            souradnice2 = y+2;
         }
-        int[] cisla = ch=='b' ? new int[]{1, 3, 5, 7} : new int[]{2, 4, 6, 8};
-        int[] cisla2 = ch=='c' ? new int[]{1, 3, 5, 7} : new int[]{2, 4, 6, 8};
+        int[] cisla = ch=='b' ? new int[]{1, 3, 5, 7, 3} : new int[]{2, 4, 6, 8, 2};
+        int[] cisla2 = ch=='c' ? new int[]{1, 3, 5, 7, 3} : new int[]{2, 4, 6, 8, 2};
         boolean a = true;
         while(a) {
             System.out.println("Zadej souřadnice, kam chceš figurku posunout: ");
@@ -59,7 +57,7 @@ public class Pohyby {
             y1 = 8 - y1;
             if((pole[y1][x1] == 0 && (Pole.pole[y1][x1] == 1 || Pole.pole[y1][x1] == 2|| Pole.pole[y1][x1] == 3)) && (souradnice==y1) && (x+1==x1 || x-1==x1)){
                 pole[y][x] =0;
-                if(Pole.pole[y1][x1] == cisla[1]) pole[y1][x1] = cisla[2];
+                if(Pole.pole[y1][x1] == cisla[4]) pole[y1][x1] = cisla[2];
                 else pole[y1][x1] = cisla[0];
                 a = false;
             } else if((pole[y1][x1] == 0 && (Pole.pole[y1][x1] == 1 || Pole.pole[y1][x1] == 2|| Pole.pole[y1][x1] == 3))) {
@@ -116,8 +114,9 @@ public class Pohyby {
 
 
     public static int[] preskoceni(int x, int y, int x1, int y1, int[][] pole, int[] cisla, int[] cisla2){
+        System.out.println(x+" "+y+" "+x1+" "+y1+" "+(x-((x-x1)/2))+" "+(y-((y-y1)/2)));
         if(Math.abs(x-x1) != 2) {
-            int[]a = preskoceni(x,y, x-((x-x1)/2), y-((y-y1)/2), pole, cisla, cisla2);
+            int[]a = preskoceni(x,y, x-((x-x1)-2), y-((y-y1)-2), pole, cisla, cisla2);
             x = a[0];
             y=a[1];
         }
@@ -125,9 +124,10 @@ public class Pohyby {
         int cisloX = xy[0];
         int cisloY = xy[1];
         System.out.println(x+" "+ y+" "+ x1+" "+ y1+" "+cisloX+" "+cisloY);
-        if(pole[cisloY][cisloX] == cisla2[0]) {
+        if(pole[cisloY][cisloX] == cisla2[0] || pole[cisloY][cisloX] == cisla2[2]) {
             pole[y][x] =0;
-            pole[y1][x1] = cisla[0];
+            if(Pole.pole[y1][x1] == cisla[4]) pole[y1][x1] = cisla[2];
+            else pole[y1][x1] = cisla[0];
             pole[cisloY][cisloX] = 0;
             x =x1;
             y=y1;

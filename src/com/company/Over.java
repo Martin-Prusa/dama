@@ -16,7 +16,7 @@ public class Over {
         try {
             if (pole[souradnice][x + 1] == 0 || pole[souradnice][x + 1] == cislo) {
                 if (pole[souradnice][x + 1] == 0) return true;
-                else if (pole[souradnice][x + 1] == 2) return pole[souradnice2][y + 2] == 0;
+                else if (pole[souradnice][x + 1] == cislo) return pole[souradnice2][x + 2] == 0;
             } else {
                 if (pole[souradnice][x - 1] == 0) return true;
                 else if (pole[souradnice][x - 1] == cislo) return pole[souradnice2][x - 2] == 0;
