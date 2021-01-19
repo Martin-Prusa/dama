@@ -62,18 +62,9 @@ public class Pohyby {
                 if(Pole.pole[y1][x1] == cisla[1]) pole[y1][x1] = cisla[2];
                 else pole[y1][x1] = cisla[0];
                 a = false;
-            } else if((pole[y1][x1] == 0 && (Pole.pole[y1][x1] == 1 || Pole.pole[y1][x1] == 2|| Pole.pole[y1][x1] == 3)) && (souradnice2==y1) && (x+2==x1 || x-2==x1)) {
-                int[] xy = Utils.xyB(x, y, x1, y1);
-                int cisloX = xy[0];
-                int cisloY = xy[1];
-                if(pole[cisloY][cisloX] == cisla2[0]) {
-                    pole[y][x] =0;
-                    pole[y1][x1] = cisla[0];
-                    pole[cisloY][cisloX] = 0;
-                    a = false;
-                } else{
-                    System.out.println("Nesprávný výběr. Zkus to znovu.");
-                }
+            } else if((pole[y1][x1] == 0 && (Pole.pole[y1][x1] == 1 || Pole.pole[y1][x1] == 2|| Pole.pole[y1][x1] == 3))) {
+                int[]b=preskoceni(x,y,x1,y1,pole,cisla,cisla2);
+                if(b[2]==0) a=false;
             } else {
                 System.out.println("Nesprávný výběr. Zkus to znovu.");
             }
@@ -121,5 +112,29 @@ public class Pohyby {
 
         }
         return pole;
+    }
+
+
+    public static int[] preskoceni(int x, int y, int x1, int y1, int[][] pole, int[] cisla, int[] cisla2){
+        if(Math.abs(x-x1) != 2) {
+            int[]a = preskoceni(x,y, x-((x-x1)/2), y-((y-y1)/2), pole, cisla, cisla2);
+            x = a[0];
+            y=a[1];
+        }
+        int[] xy = Utils.xyB(x, y, x1, y1);
+        int cisloX = xy[0];
+        int cisloY = xy[1];
+        System.out.println(x+" "+ y+" "+ x1+" "+ y1+" "+cisloX+" "+cisloY);
+        if(pole[cisloY][cisloX] == cisla2[0]) {
+            pole[y][x] =0;
+            pole[y1][x1] = cisla[0];
+            pole[cisloY][cisloX] = 0;
+            x =x1;
+            y=y1;
+            return new int[]{x, y, 0};
+        } else{
+            System.out.println("Nesprávný výběr. Zkus to znovu.aaa");
+        }
+        return new int[]{x, y, 1};
     }
 }
