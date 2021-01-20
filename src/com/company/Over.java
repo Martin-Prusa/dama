@@ -35,42 +35,30 @@ public class Over {
 
     public static boolean overeniMoznostiTahuDamy(int x, int y, int[][] pole, char ch) {
         int[] cisla = ch == 'b' ? new int[]{1, 3, 5, 7} : new int[]{2, 4, 6, 8};
-        int tmpX, tmpY;
-        tmpX = x;
-        tmpY = y;
-        while (tmpX != 0 && tmpY != 0) {
-            tmpX--;
-            tmpY--;
+        if(damaOvereni(x,y,0,0,pole, cisla)) return true;
+        else if(damaOvereni(x,y,7,7,pole, cisla)) return true;
+        else if(damaOvereni(x,y,0,7,pole, cisla)) return true;
+        else if(damaOvereni(x,y,7,0,pole, cisla)) return true;
+        return false;
+    }
 
-            if (pole[tmpY][tmpX] == 0) return true;
-            else if (pole[tmpY][tmpX] == cisla[0] || pole[tmpY][tmpX] == cisla[2]) break;
-
-        }
-        tmpX = x;
-        tmpY = y;
-        while (tmpX != 7 && tmpY != 7) {
-            tmpX++;
-            tmpY++;
-
-            if (pole[tmpY][tmpX] == 0) return true;
-            else if (pole[tmpY][tmpX] == cisla[0] || pole[tmpY][tmpX] == cisla[2]) break;
-
-        }
-        tmpX = x;
-        tmpY = y;
-        while (tmpX != 0 && tmpY != 7) {
-            tmpX--;
-            tmpY++;
-
-            if (pole[tmpY][tmpX] == 0) return true;
-            else if (pole[tmpY][tmpX] == cisla[0] || pole[tmpY][tmpX] == cisla[2]) break;
-
-        }
-        tmpX = x;
-        tmpY = y;
-        while (tmpX != 7 && tmpY != 0) {
-            tmpX++;
-            tmpY--;
+    public static boolean damaOvereni(int x, int y, int mx, int my, int[][] pole, int[]cisla) {
+        int tmpX = x;
+        int tmpY = y;
+        while (tmpX != mx && tmpY != my) {
+            if(mx == 7 && my == 0) {
+                tmpX++;
+                tmpY--;
+            } else if(mx == 0 && my == 7) {
+                tmpX--;
+                tmpY++;
+            } else if(mx == 7 && my == 7) {
+                tmpX++;
+                tmpY++;
+            } else {
+                tmpX--;
+                tmpY--;
+            }
 
             if (pole[tmpY][tmpX] == 0) return true;
             else if (pole[tmpY][tmpX] == cisla[0] || pole[tmpY][tmpX] == cisla[2]) break;

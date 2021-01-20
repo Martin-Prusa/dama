@@ -60,7 +60,7 @@ public class Pohyby {
                 if(Pole.pole[y1][x1] == cisla[4]) pole[y1][x1] = cisla[2];
                 else pole[y1][x1] = cisla[0];
                 a = false;
-            } else if((pole[y1][x1] == 0 && (Pole.pole[y1][x1] == 1 || Pole.pole[y1][x1] == 2|| Pole.pole[y1][x1] == 3))) {
+            } else if((pole[y1][x1] == 0 && (Pole.pole[y1][x1] == 1 || Pole.pole[y1][x1] == 2|| Pole.pole[y1][x1] == 3)) && ((x+2==x1 || x-2==x1)||(x+4==x1 || x-4==x1) ||(x+6==x1 || x-6==x1))) {
                 int[]b=preskoceni(x,y,x1,y1,pole,cisla,cisla2);
                 if(b[2]==0) a=false;
             } else {
@@ -114,16 +114,14 @@ public class Pohyby {
 
 
     public static int[] preskoceni(int x, int y, int x1, int y1, int[][] pole, int[] cisla, int[] cisla2){
-        System.out.println(x+" "+y+" "+x1+" "+y1+" "+(x-((x-x1)/2))+" "+(y-((y-y1)/2)));
         if(Math.abs(x-x1) != 2) {
-            int[]a = preskoceni(x,y, x-((x-x1)-2), y-((y-y1)-2), pole, cisla, cisla2);
+            int[]a = preskoceni(x,y, x-((x-x1)-(((x-x1)/Math.abs(x-x1))*2)), y-((y-y1)-(((y-y1)/Math.abs(y-y1))*2)), pole, cisla, cisla2);
             x = a[0];
             y=a[1];
         }
         int[] xy = Utils.xyB(x, y, x1, y1);
         int cisloX = xy[0];
         int cisloY = xy[1];
-        System.out.println(x+" "+ y+" "+ x1+" "+ y1+" "+cisloX+" "+cisloY);
         if(pole[cisloY][cisloX] == cisla2[0] || pole[cisloY][cisloX] == cisla2[2]) {
             pole[y][x] =0;
             if(Pole.pole[y1][x1] == cisla[4]) pole[y1][x1] = cisla[2];
@@ -133,7 +131,7 @@ public class Pohyby {
             y=y1;
             return new int[]{x, y, 0};
         } else{
-            System.out.println("Nesprávný výběr. Zkus to znovu.aaa");
+            System.out.println("Nesprávný výběr. Zkus to znovu.");
         }
         return new int[]{x, y, 1};
     }
