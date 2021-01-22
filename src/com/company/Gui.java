@@ -1,10 +1,10 @@
 package com.company;
 
-public class Vykresleni {
+public class Gui {
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_RED = "\u001B[31m";
 
-    public static void vykresliPole(int[][] pole) {
+    public static void drawField(int[][] pole) {
         for (int i = 0; i < pole.length; i++) {
             for (int j = 0; j < pole.length; j++) {
                 if(j==0) {
@@ -12,7 +12,7 @@ public class Vykresleni {
                 }
 
                 if(pole[i][j] == 0) {
-                    if(Pole.pole[i][j] == 1 ||Pole.pole[i][j] == 2 || Pole.pole[i][j] == 3) {
+                    if(Field.field[i][j] == 1 || Field.field[i][j] == 2 || Field.field[i][j] == 3) {
                         System.out.print("⬛️");
                     } else {
                         System.out.print("⬜️");

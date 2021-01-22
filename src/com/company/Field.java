@@ -1,7 +1,7 @@
 package com.company;
 
-public class Pole {
-    static int [][] pole = {
+public class Field {
+    static int [][] field = {
             {0, 3, 0, 3, 0, 3, 0, 3},
             {1, 0, 1, 0, 1, 0, 1, 0},
             {0, 1, 0, 1, 0, 1, 0, 1},
