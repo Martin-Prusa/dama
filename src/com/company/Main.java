@@ -3,6 +3,12 @@ package com.company;
 public class Main {
 
     public static void main(String[] args) {
+        System.out.println("   ___ _           _              \n" +
+                "  / __| |_  ___ __| |_____ _ _ ___\n" +
+                " | (__| ' \\/ -_) _| / / -_) '_(_-<\n" +
+                "  \\___|_||_\\___\\__|_\\_\\___|_| /__/\n" +
+                "                                  \n" +
+                "\n");
         while (true) {
             int[][] hraciPole = {
                     {0, 2, 0, 2, 0, 2, 0, 2},
