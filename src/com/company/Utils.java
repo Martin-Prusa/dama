@@ -25,8 +25,7 @@ public class Utils {
     public static int[] xyB(int x, int y, int x1, int y1) {
         var cisloX = ((x1 - x) / 2) + x;
         var cisloY = ((y1 - y) / 2) + y;
-        int[] a = {cisloX, cisloY};
-        return a;
+        return new int[]{cisloX, cisloY};
     }
 
     public static int[] pocet(int[][] pole) {
@@ -37,8 +36,7 @@ public class Utils {
                 else if (pole[i][i1] == 2 || pole[i][i1] == 4 || pole[i][i1] == 6 || pole[i][i1] == 8) cerne++;
             }
         }
-        int[] xxx = {bile, cerne};
-        return xxx;
+        return new int[]{bile, cerne};
     }
 
 }

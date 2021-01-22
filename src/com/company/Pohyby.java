@@ -20,7 +20,7 @@ public class Pohyby {
                 pole[y][x] = cisla[0];
                 if(Over.overreniMoznostiTahuNormalniho(x, y, pole, ch)) {
                     a = false;
-                    pole = pohybOvereniNormalni(x, y, pole, ch);
+                    pohybOvereniNormalni(x, y, pole, ch);
                 } else System.out.println("Touto figurkou by nešlo táhnout. Vyber prosím jinou figurku.");
             } else if(pole[y][x] == cisla[2]) {
                 pole[y][x] = cisla[3];
@@ -28,7 +28,7 @@ public class Pohyby {
                 pole[y][x] = cisla[2];
                 if(Over.overeniMoznostiTahuDamy(x, y, pole, ch)) {
                     a = false;
-                    pole = pohybOvereniDamy(x, y, pole, ch);
+                    pohybOvereniDamy(x, y, pole, ch);
                 } else System.out.println("Touto figurkou by nešlo táhnout. Vyber prosím jinou figurku.");
             } else {
                 if(ch=='b') System.out.println("Neplatný výběr. Hraje bílý hráč.  Zkus to znovu.");

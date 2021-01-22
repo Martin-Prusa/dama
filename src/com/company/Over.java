@@ -38,8 +38,7 @@ public class Over {
         if(damaOvereni(x,y,0,0,pole, cisla)) return true;
         else if(damaOvereni(x,y,7,7,pole, cisla)) return true;
         else if(damaOvereni(x,y,0,7,pole, cisla)) return true;
-        else if(damaOvereni(x,y,7,0,pole, cisla)) return true;
-        return false;
+        else return damaOvereni(x, y, 7, 0, pole, cisla);
     }
 
     public static boolean damaOvereni(int x, int y, int mx, int my, int[][] pole, int[]cisla) {
