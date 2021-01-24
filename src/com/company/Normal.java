@@ -8,8 +8,8 @@ public class Normal {
         } else {
             souradnice = y+1;
         }
-        int[] cisla = ch=='b' ? new int[]{1, 3, 5, 7, 3} : new int[]{2, 4, 6, 8, 2};
-        int[] cisla2 = ch=='c' ? new int[]{1, 3, 5, 7, 3} : new int[]{2, 4, 6, 8, 2};
+        int[] cisla = ch=='b' ? new int[]{1, 3, 5, 7, 0} : new int[]{2, 4, 6, 8, 7};
+        int[] cisla2 = ch=='c' ? new int[]{1, 3, 5, 7, 0} : new int[]{2, 4, 6, 8, 7};
         boolean a = true;
         while(a) {
             System.out.println("Zadej souřadnice, kam chceš figurku posunout: ");
@@ -18,12 +18,12 @@ public class Normal {
             System.out.print("y:");
             int y1 = Utils.dalsiCislo(0,8);
             y1 = 8 - y1;
-            if((pole[y1][x1] == 0 && (Field.field[y1][x1] == 1 || Field.field[y1][x1] == 2|| Field.field[y1][x1] == 3)) && (souradnice==y1) && (x+1==x1 || x-1==x1)){
+            if((pole[y1][x1] == 0 && (Math.abs(x-x1)== Math.abs(y-y1))) && (souradnice==y1) && (x+1==x1 || x-1==x1)){
                 pole[y][x] =0;
-                if(Field.field[y1][x1] == cisla[4]) pole[y1][x1] = cisla[2];
+                if(y1 == cisla[4]) pole[y1][x1] = cisla[2];
                 else pole[y1][x1] = cisla[0];
                 a = false;
-            } else if((pole[y1][x1] == 0 && (Field.field[y1][x1] == 1 || Field.field[y1][x1] == 2|| Field.field[y1][x1] == 3)) && ((x+2==x1 || x-2==x1)||(x+4==x1 || x-4==x1) ||(x+6==x1 || x-6==x1))) {
+            } else if((pole[y1][x1] == 0 && (Math.abs(x-x1)== Math.abs(y-y1))) && ((x+2==x1 || x-2==x1)||(x+4==x1 || x-4==x1) ||(x+6==x1 || x-6==x1))) {
                 int[]b=jump(x,y,x1,y1,pole,cisla,cisla2);
                 if(b[2]==0) a=false;
             } else {
@@ -44,7 +44,7 @@ public class Normal {
         int cisloY = xy[1];
         if(pole[cisloY][cisloX] == cisla2[0] || pole[cisloY][cisloX] == cisla2[2]) {
             pole[y][x] =0;
-            if(Field.field[y1][x1] == cisla[4]) pole[y1][x1] = cisla[2];
+            if(y1 == cisla[4]) pole[y1][x1] = cisla[2];
             else pole[y1][x1] = cisla[0];
             pole[cisloY][cisloX] = 0;
             x =x1;

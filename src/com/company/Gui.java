@@ -5,18 +5,13 @@ public class Gui {
     public static final String ANSI_RED = "\u001B[31m";
 
     public static void drawField(int[][] pole) {
+        boolean black = true;
         for (int i = 0; i < pole.length; i++) {
             for (int j = 0; j < pole.length; j++) {
-                if(j==0) {
-                    System.out.print(8-i+" ");
-                }
-
+                if(j==0) System.out.print(8-i+" ");
                 if(pole[i][j] == 0) {
-                    if(Field.field[i][j] == 1 || Field.field[i][j] == 2 || Field.field[i][j] == 3) {
-                        System.out.print("⬛️");
-                    } else {
-                        System.out.print("⬜️");
-                    }
+                    if(black) System.out.print("⬜️");
+                    else System.out.print("⬛️");
                 }else if(pole[i][j] == 1)System.out.print("◉ ");
                 else if(pole[i][j] == 2) System.out.print("◎ ");
                 else if (pole[i][j] == 3) System.out.print(ANSI_RED+"◉ "+ANSI_RESET);
@@ -25,8 +20,9 @@ public class Gui {
                 else if(pole[i][j] == 6) System.out.print("♖ ");
                 else if(pole[i][j] == 7) System.out.print(ANSI_RED+"♜ "+ANSI_RESET);
                 else if(pole[i][j] == 8) System.out.print(ANSI_RED+"♖ "+ANSI_RESET);
+                black = !black;
             }
-
+            black = !black;
             System.out.println();
         }
         System.out.println("  1  2 3  4 5  6 7  8");
