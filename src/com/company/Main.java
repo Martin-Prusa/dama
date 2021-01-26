@@ -1,7 +1,6 @@
 package com.company;
 
 public class Main {
-
     public static void main(String[] args) {
         System.out.println("   ___ _           _              \n" +
                 "  / __| |_  ___ __| |_____ _ _ ___\n" +
@@ -32,10 +31,14 @@ public class Main {
 //            };
 
             System.out.println("1) Nová hra");
-            System.out.println("2) Ukončit");
+            System.out.println("2) Načíst hru");
+            System.out.println("3) Ukončit");
             int volba = Utils.dalsiCislo(0, 2);
-            if (volba == 2) System.exit(0);
+            if(volba == 3) System.exit(0);
             else {
+                if (volba == 2) {
+                    hraciPole = Saving.load();
+                }
                 Gui.drawField(hraciPole);
                 while (true) {
                     int[] aaa = Utils.pocet(hraciPole);

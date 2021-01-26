@@ -39,4 +39,23 @@ public class Utils {
         return new int[]{bile, cerne};
     }
 
+    public static int volba(int min, int max, int[][] pole) {
+        Scanner sc = new Scanner(System.in);
+        while (true) {
+            System.out.println("Zadej souřadnice bílé figurky, se kterou chceš pohnout, save pro uložení, nebo exit k ukončení hry: ");
+            System.out.print("x, save nebo exit:");
+            try {
+                String str = sc.nextLine();
+                if (str.equalsIgnoreCase("save")) Saving.save(pole);
+                else if(str.equalsIgnoreCase("exit")) System.exit(0);
+                else{
+                    int a = Integer.parseInt(str);
+                    if (jeVRozsahu(a, min, max)) return a;
+                    else System.out.println("Číslo musí být v rozsahu " + (min + 1) + "-" + max);
+                }
+            } catch (Exception e) {
+                System.out.println("Toto není číslo, zkus to znovu.");
+            }
+        }
+    }
 }
