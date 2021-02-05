@@ -12,19 +12,19 @@ public class Gui {
                 if(pole[i][j] == 0) {
                     if(black) System.out.print("⬜️");
                     else System.out.print("⬛️");
-                }else if(pole[i][j] == 1)System.out.print("◉ ");
-                else if(pole[i][j] == 2) System.out.print("◎ ");
+                }else if(pole[i][j] == 1)System.out.print("⚪");
+                else if(pole[i][j] == 2) System.out.print("⚫");
                 else if (pole[i][j] == 3) System.out.print(ANSI_RED+"◉ "+ANSI_RESET);
                 else if(pole[i][j] == 4) System.out.print(ANSI_RED+"◎ "+ANSI_RESET);
-                else if(pole[i][j] == 5) System.out.print("♜ ");
-                else if(pole[i][j] == 6) System.out.print("♖ ");
-                else if(pole[i][j] == 7) System.out.print(ANSI_RED+"♜ "+ANSI_RESET);
-                else if(pole[i][j] == 8) System.out.print(ANSI_RED+"♖ "+ANSI_RESET);
+                else if(pole[i][j] == 5) System.out.print("♖ ");
+                else if(pole[i][j] == 6) System.out.print("♜ ");
+                else if(pole[i][j] == 7) System.out.print(ANSI_RED+"♖ "+ANSI_RESET);
+                else if(pole[i][j] == 8) System.out.print(ANSI_RED+"♜ "+ANSI_RESET);
                 black = !black;
             }
             black = !black;
             System.out.println();
         }
-        System.out.println("  1  2 3  4 5  6 7  8");
+        System.out.println("  1 2 3 4  5 6  7 8");
     }
 }
